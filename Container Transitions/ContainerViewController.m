@@ -87,9 +87,7 @@ static CGFloat const kButtonSlotHeight = 44;
     
     // Add gesture recognizer and setup for interactive transition
     __weak typeof(self) wself = self;
-    self.defaultInteractionController = [[PanGestureInteractiveTransition alloc] initWithGestureRecognizerInView:self.privateContainerView recognizedBlock:^(UIScreenEdgePanGestureRecognizer *recognizer) {
-        BOOL leftToRight = [recognizer velocityInView:recognizer.view].x > 0;
-        
+    self.defaultInteractionController = [[PanGestureInteractiveTransition alloc] initWithGestureRecognizerInView:self.privateContainerView recognizedBlock:^(BOOL leftToRight) {
         NSUInteger currentVCIndex = [self.viewControllers indexOfObject:self.selectedViewController];
         if (!leftToRight && currentVCIndex != self.viewControllers.count-1) {
             [wself setSelectedViewController:self.viewControllers[currentVCIndex+1]];
