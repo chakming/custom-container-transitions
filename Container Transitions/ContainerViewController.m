@@ -87,7 +87,7 @@ static CGFloat const kButtonSlotHeight = 44;
     
     // Add gesture recognizer and setup for interactive transition
     __weak typeof(self) wself = self;
-    self.defaultInteractionController = [[PanGestureInteractiveTransition alloc] initWithGestureRecognizerInView:self.privateContainerView recognizedBlock:^(UIPanGestureRecognizer *recognizer) {
+    self.defaultInteractionController = [[PanGestureInteractiveTransition alloc] initWithGestureRecognizerInView:self.privateContainerView recognizedBlock:^(UIScreenEdgePanGestureRecognizer *recognizer) {
         BOOL leftToRight = [recognizer velocityInView:recognizer.view].x > 0;
         
         NSUInteger currentVCIndex = [self.viewControllers indexOfObject:self.selectedViewController];
@@ -115,10 +115,6 @@ static CGFloat const kButtonSlotHeight = 44;
 - (void)setSelectedViewController:(UIViewController *)selectedViewController {
 	NSParameterAssert (selectedViewController);
 	[self _transitionToChildViewController:selectedViewController];
-}
-
-- (UIGestureRecognizer *)interactiveTransitionGestureRecognizer {
-    return self.defaultInteractionController.recognizer;
 }
 
 #pragma mark Private Methods
@@ -236,7 +232,7 @@ static CGFloat const kButtonSlotHeight = 44;
 
 - (id<UIViewControllerInteractiveTransitioning>)_interactionControllerForAnimator:(id<UIViewControllerAnimatedTransitioning>)animationController animatorIsDefault:(BOOL)animatorIsDefault {
     
-    if (self.defaultInteractionController.recognizer.state == UIGestureRecognizerStateBegan) {
+    if ([self.defaultInteractionController recognizerStateBegan]) {
         self.defaultInteractionController.animator = animationController;
         return self.defaultInteractionController;
     } else if (!animatorIsDefault && [self.delegate respondsToSelector:@selector(containerViewController:interactionControllerForAnimationController:)]) {

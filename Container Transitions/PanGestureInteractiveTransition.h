@@ -11,9 +11,12 @@
 /// Instances of this class perform the interactive transition by using a UIPanGestureRecognizer to control the animation.
 @interface PanGestureInteractiveTransition : AWPercentDrivenInteractiveTransition
 
-- (id)initWithGestureRecognizerInView:(UIView *)view recognizedBlock:(void (^)(UIPanGestureRecognizer *recognizer))gestureRecognizedBlock;
+- (id)initWithGestureRecognizerInView:(UIView *)view recognizedBlock:(void (^)(UIScreenEdgePanGestureRecognizer *recognizer))gestureRecognizedBlock;
 
-@property (nonatomic, readonly) UIPanGestureRecognizer *recognizer;
+- (BOOL)recognizerStateBegan;
+
+@property (nonatomic, readonly) UIScreenEdgePanGestureRecognizer *leftRecognizer;
+@property (nonatomic, readonly) UIScreenEdgePanGestureRecognizer *rightRecognizer;
 
 /// This block gets run when the gesture recognizer start recognizing a pan. Inside, the start of a transition can be triggered.
 @property (nonatomic, copy) void (^gestureRecognizedBlock)(UIPanGestureRecognizer *recognizer);

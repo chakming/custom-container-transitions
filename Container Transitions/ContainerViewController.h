@@ -27,9 +27,6 @@
 /// The currently selected and visible child view controller.
 @property (nonatomic, assign) UIViewController *selectedViewController;
 
-/// The gesture recognizer responsible for changing view controllers. (read-only)
-@property (nonatomic, readonly) UIGestureRecognizer *interactiveTransitionGestureRecognizer;
-
 /** Designated initializer.
  @note The view controllers array cannot be changed after initialization.
  */
