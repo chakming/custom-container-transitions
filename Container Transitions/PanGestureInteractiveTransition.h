@@ -19,6 +19,6 @@
 @property (nonatomic, readonly) UIScreenEdgePanGestureRecognizer *rightRecognizer;
 
 /// This block gets run when the gesture recognizer start recognizing a pan. Inside, the start of a transition can be triggered.
-@property (nonatomic, copy) void (^gestureRecognizedBlock)(UIPanGestureRecognizer *recognizer);
+@property (nonatomic, copy) void (^gestureRecognizedBlock)(UIScreenEdgePanGestureRecognizer *recognizer);
 
 @end
